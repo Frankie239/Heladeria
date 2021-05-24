@@ -1,4 +1,4 @@
-package Model
+package francisco.gimenez.istea.heladeria.Model
 
 import android.view.LayoutInflater
 import android.view.View
