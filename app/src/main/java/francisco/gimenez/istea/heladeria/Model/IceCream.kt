@@ -6,6 +6,6 @@ data class IceCream(
         val price:Int,
         val description:String,
         val size:String,
-        val flavors:ArrayList<String>,
-        val photo:Int
+        val photo:Int,
+        val flavors:ArrayList<String> = ArrayList<String>(),
 ):Serializable
