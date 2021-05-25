@@ -23,7 +23,8 @@ class MainActivity : AppCompatActivity() {
 
         Initialize()
         recyclerIceCream = findViewById(R.id.recycler_iceCream)
-        recyclerIceCream.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL,false)
+        recyclerIceCream.layoutManager = LinearLayoutManager(this, ConstraintLayout.SCROLL_AXIS_HORIZONTAL,false)
+        //recyclerIceCream.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL,false)
         //vinculate to the recycler
         recyclerIceCream.adapter = IceCreamAdapter(listIceCream)
 
