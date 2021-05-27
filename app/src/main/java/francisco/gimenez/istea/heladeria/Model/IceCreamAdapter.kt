@@ -17,14 +17,14 @@ class IceCreamAdapter(private val dataset:ArrayList<IceCream>):RecyclerView.Adap
         val description:TextView
         val size:TextView
         val price:TextView
-        val image:ImageView
+        //val image:ImageView
         val add:Button
 
         init {
             price = view.findViewById(R.id.textV_price)
             description = view.findViewById(R.id.textV_description)
             size = view.findViewById(R.id.textV_size)
-            image = view.findViewById(R.id.image_Item)
+            //image = view.findViewById(R.id.image_Item)
             add = view.findViewById(R.id.button_add)
         }
     }
@@ -44,9 +44,10 @@ class IceCreamAdapter(private val dataset:ArrayList<IceCream>):RecyclerView.Adap
         holder.price.text = dataset[position].price.toString()
         holder.description.text = dataset[position].description
         holder.size.text = dataset[position].size
-        holder.image.setImageResource(dataset[position].photo)
+        //holder.image.setImageResource(dataset[position].photo)
+
         holder.add.setOnClickListener(View.OnClickListener {
-            Toast.makeText(holder.itemView.context,"compraste un"+dataset[position].size.toString(),Toast.LENGTH_LONG).show()
+            Toast.makeText(holder.itemView.context,"compraste un"+dataset[position].size.toString(),Toast.LENGTH_SHORT).show()
             DbMockup.order.add(dataset[position])
         })
 

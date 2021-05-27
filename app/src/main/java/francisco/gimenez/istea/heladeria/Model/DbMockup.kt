@@ -4,7 +4,6 @@ class DbMockup {
 
     companion object{
         var order:ArrayList<IceCream> = ArrayList<IceCream>()
-
     }
 
 }

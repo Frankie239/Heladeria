@@ -5,16 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/image_Item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/button_add"
         android:layout_width="wrap_content"
@@ -31,24 +21,22 @@
         android:id="@+id/textV_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="Size"
         android:textSize="30sp"
-        app:layout_constraintStart_toEndOf="@+id/image_Item"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="36dp" />
 
     <TextView
         android:id="@+id/textV_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:layout_marginBottom="44dp"
         android:text="description"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/image_Item"
         app:layout_constraintTop_toBottomOf="@+id/textV_size"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="36dp" />
 
     <TextView
         android:id="@+id/textV_price"

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button_show)
 
         button.setOnClickListener(View.OnClickListener {
-            Toast.makeText(this, "Hay"+DbMockup.order.size.toString()+" helados",Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Hay "+DbMockup.order.size.toString()+" helados",Toast.LENGTH_LONG).show()
         })
     }
 
