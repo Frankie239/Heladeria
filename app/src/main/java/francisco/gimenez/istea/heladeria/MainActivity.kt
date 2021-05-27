@@ -1,6 +1,7 @@
 package francisco.gimenez.istea.heladeria
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -47,7 +48,8 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.button_show)
 
         button.setOnClickListener(View.OnClickListener {
-            Toast.makeText(this, "Hay "+DbMockup.order.size.toString()+" helados",Toast.LENGTH_LONG).show()
+            val intent:Intent = Intent(this, IceCreamServer_activity::class.java)
+            startActivity(intent)
         })
     }
 
