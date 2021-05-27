@@ -1,9 +1,11 @@
 package francisco.gimenez.istea.heladeria
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.*
+import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import francisco.gimenez.istea.heladeria.Model.DbMockup
 import francisco.gimenez.istea.heladeria.Model.IceCream
@@ -16,17 +18,22 @@ class IceCreamServer_activity : AppCompatActivity() {
     lateinit var flavor4:EditText
     lateinit var extras: Spinner
     lateinit var checkout:Button
+    lateinit var payButton:Button
+    var itemsQuantity:Int =0
     var extraFlavors:ArrayList<String> = ArrayList<String>()
     var index:Int = 0
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ice_cream_server_activity)
         Initialize()
+        itemsQuantity = DbMockup.order.size
         extraFlavors.add("Chocolate fundido")
         extraFlavors.add("Salsa de frutilla")
         LoadView(index)
+
     }
 
     private fun Initialize(){
@@ -37,15 +44,20 @@ class IceCreamServer_activity : AppCompatActivity() {
         flavor4=findViewById(R.id.eText_Flavor4)
         extras=findViewById(R.id.sp_extra)
         checkout=findViewById(R.id.button_checkout)
+        payButton=findViewById(R.id.button_pay)
         InitSpinner()
         checkout.setOnClickListener(View.OnClickListener {
-            //Todo: Make this to load to some part were all the ice creams are shown. 
+
             AddToCheckout(index);
             index++
             LoadView(index)
-            if (index == DbMockup.order.size){
-                Toast.makeText(this, "End of the line",Toast.LENGTH_SHORT).show()
-            }
+
+        })
+        payButton.setOnClickListener(View.OnClickListener {
+            //Todo: Make this to load to some part were all the ice creams are shown.
+            val intent: Intent = Intent(this, CheckoutActivity::class.java)
+            intent.putExtra("items",DbMockup.checkedOut)
+            startActivity(intent)
         })
     }
 
@@ -76,6 +88,12 @@ class IceCreamServer_activity : AppCompatActivity() {
             }
 
 
+        }
+        if (id == itemsQuantity-1){
+            checkout.isGone = true
+
+            payButton.isVisible = true
+            payButton.isEnabled = true
         }
 
     }

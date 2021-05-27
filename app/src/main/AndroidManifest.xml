@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Heladeria">
-        <activity android:name=".IceCreamServer_activity"></activity>
+        <activity android:name=".CheckoutActivity"></activity>
+        <activity android:name=".IceCreamServer_activity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
