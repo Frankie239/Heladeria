@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import francisco.gimenez.istea.heladeria.R
 
@@ -28,12 +29,13 @@ class IceCreamAdapter(private val dataset:ArrayList<IceCream>):RecyclerView.Adap
         }
     }
 
-    //On the creation of the viewholder, methor herited from RecyclerView.
+    //On the creation of the viewholder, method herited from RecyclerView.
     //
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         //We select which view to inflate
         val view = LayoutInflater.from(parent.context).inflate(R.layout.ice_cream_item,parent,false)
         return ViewHolder(view)
+
     }
 
 
@@ -44,7 +46,8 @@ class IceCreamAdapter(private val dataset:ArrayList<IceCream>):RecyclerView.Adap
         holder.size.text = dataset[position].size
         holder.image.setImageResource(dataset[position].photo)
         holder.add.setOnClickListener(View.OnClickListener {
-            //toDo: Add to the list of ice creams.
+            Toast.makeText(holder.itemView.context,"compraste un"+dataset[position].size.toString(),Toast.LENGTH_LONG).show()
+            DbMockup.order.add(dataset[position])
         })
 
 
