@@ -2,7 +2,11 @@ package francisco.gimenez.istea.heladeria
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.*
+import androidx.core.view.isVisible
+import francisco.gimenez.istea.heladeria.Model.DbMockup
+import francisco.gimenez.istea.heladeria.Model.IceCream
 
 class IceCreamServer_activity : AppCompatActivity() {
     lateinit var textViewSize:TextView
@@ -13,6 +17,7 @@ class IceCreamServer_activity : AppCompatActivity() {
     lateinit var extras: Spinner
     lateinit var checkout:Button
     var extraFlavors:ArrayList<String> = ArrayList<String>()
+    var index:Int = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,9 +26,10 @@ class IceCreamServer_activity : AppCompatActivity() {
         Initialize()
         extraFlavors.add("Chocolate fundido")
         extraFlavors.add("Salsa de frutilla")
+        LoadView(index)
     }
 
-    fun Initialize(){
+    private fun Initialize(){
         textViewSize =findViewById(R.id.textV_iceCreamSize)
         flavor1=findViewById(R.id.eText_Flavor1)
         flavor2=findViewById(R.id.eText_Flavor2)
@@ -32,6 +38,15 @@ class IceCreamServer_activity : AppCompatActivity() {
         extras=findViewById(R.id.sp_extra)
         checkout=findViewById(R.id.button_checkout)
         InitSpinner()
+        checkout.setOnClickListener(View.OnClickListener {
+            //Todo: Make this to load to some part were all the ice creams are shown. 
+            AddToCheckout(index);
+            index++
+            LoadView(index)
+            if (index == DbMockup.order.size){
+                Toast.makeText(this, "End of the line",Toast.LENGTH_SHORT).show()
+            }
+        })
     }
 
     private fun InitSpinner() {
@@ -39,5 +54,47 @@ class IceCreamServer_activity : AppCompatActivity() {
         extras.adapter = adapter
     }
 
+    fun LoadView(id:Int){
+
+        textViewSize.text = DbMockup.order[id].size.toString()
+
+        when(textViewSize.text){
+            "Cono" ->{
+                flavor3.isVisible = false
+                flavor4.isVisible = false
+                extras.isVisible = false
+            }
+            "Cuarto" ->{
+                flavor3.isVisible = true
+                flavor4.isVisible = false
+                extras.isVisible = true
+            }
+            "Kilo" ->{
+                flavor3.isVisible = true
+                flavor4.isVisible = true
+                extras.isVisible = true
+            }
+
+
+        }
+
+    }
+    fun AddToCheckout(id:Int){
+        var flavors: ArrayList<String>  = ArrayList<String>()
+        flavors.add(flavor1.text.toString())
+        flavors.add(flavor2.text.toString())
+        flavors.add(flavor3.text.toString())
+        flavors.add(flavor4.text.toString())
+
+        DbMockup.checkedOut.add(
+            IceCream(
+                DbMockup.order[id].price,
+                DbMockup.order[id].description,
+                DbMockup.order[id].size,
+                DbMockup.order[id].photo,
+                flavors
+            )
+        )
+    }
 
 }
