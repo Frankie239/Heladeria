@@ -46,6 +46,7 @@ class IceCreamServer_activity : AppCompatActivity() {
         checkout=findViewById(R.id.button_checkout)
         payButton=findViewById(R.id.button_pay)
         InitSpinner()
+
         checkout.setOnClickListener(View.OnClickListener {
 
             AddToCheckout(index);
@@ -55,6 +56,7 @@ class IceCreamServer_activity : AppCompatActivity() {
         })
         payButton.setOnClickListener(View.OnClickListener {
             //Todo: Make this to load to some part were all the ice creams are shown.
+            AddToCheckout(index)
             val intent: Intent = Intent(this, CheckoutActivity::class.java)
             intent.putExtra("items",DbMockup.checkedOut)
             startActivity(intent)
@@ -89,7 +91,7 @@ class IceCreamServer_activity : AppCompatActivity() {
 
 
         }
-        if (id == itemsQuantity-1){
+         if (id == itemsQuantity-1){
             checkout.isGone = true
 
             payButton.isVisible = true
@@ -97,7 +99,7 @@ class IceCreamServer_activity : AppCompatActivity() {
         }
 
     }
-    fun AddToCheckout(id:Int){
+     private fun AddToCheckout(id:Int){
         var flavors: ArrayList<String>  = ArrayList<String>()
         flavors.add(flavor1.text.toString())
         flavors.add(flavor2.text.toString())

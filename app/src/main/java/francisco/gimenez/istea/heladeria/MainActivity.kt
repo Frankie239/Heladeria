@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import francisco.gimenez.istea.heladeria.Model.DbMockup
 import francisco.gimenez.istea.heladeria.Model.IceCream
 import francisco.gimenez.istea.heladeria.Model.IceCreamAdapter
+//import com.facebook.stetho.Stetho
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var button:Button
     //Creating a variable so i can send the selected ice creams to the
     //next view.
-    var toCheckout:ArrayList<IceCream> = ArrayList<IceCream>()
+   // var toCheckout:ArrayList<IceCream> = ArrayList<IceCream>()
 
     @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         //recyclerIceCream.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL,false)
         //vinculate to the recycler
         recyclerIceCream.adapter = IceCreamAdapter(listIceCream)
+        //Stetho.initializeWithDefaults(this)
 
 
 
