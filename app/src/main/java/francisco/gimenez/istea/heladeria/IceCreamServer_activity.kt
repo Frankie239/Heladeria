@@ -28,10 +28,11 @@ class IceCreamServer_activity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ice_cream_server_activity)
-        Initialize()
-        itemsQuantity = DbMockup.order.size
         extraFlavors.add("Chocolate fundido")
         extraFlavors.add("Salsa de frutilla")
+        Initialize()
+        itemsQuantity = DbMockup.order.size
+
         LoadView(index)
 
     }
@@ -55,7 +56,7 @@ class IceCreamServer_activity : AppCompatActivity() {
 
         })
         payButton.setOnClickListener(View.OnClickListener {
-            //Todo: Make this to load to some part were all the ice creams are shown.
+
             AddToCheckout(index)
             val intent: Intent = Intent(this, CheckoutActivity::class.java)
             intent.putExtra("items",DbMockup.checkedOut)
