@@ -1,6 +1,7 @@
 package francisco.gimenez.istea.heladeria
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,13 +32,15 @@ class CheckoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_checkout)
+        sellers.add("Lenni")
+        sellers.add("Carl")
+        sellers.add("Barney")
         initialize()
         recyclerIceCream = findViewById(R.id.recycler_items)
         recyclerIceCream.layoutManager = LinearLayoutManager(this, ConstraintLayout.SCROLL_AXIS_HORIZONTAL,false)
         recyclerIceCream.adapter = CheckoutAdapter(listIceCream)
-        sellers.add("Lenni")
-        sellers.add("Carl")
-        sellers.add("Barney")
+
+
     }
 
     private fun initialize(){
@@ -47,18 +50,26 @@ class CheckoutActivity : AppCompatActivity() {
         buttonCheckout.setOnClickListener(View.OnClickListener {
             DbMockup.order = ArrayList<IceCream>()
             DbMockup.checkedOut = ArrayList<IceCream>()
-            
+            GrabSeller()
+            val intent: Intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+
         })
         InitSpinner()
     }
     private fun InitSpinner(){
         var adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item,sellers)
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
         spinner.adapter = adapter
     }
-
-    private fun PrepareView(){
-        //Todo: hacer que desaparezca los botones y la desc.
-
-
+    private fun GrabSeller(){
+        DbMockup.sellers[spinner.selectedItem.toString()]
     }
+    private fun validateSellers(){
+        val first = DbMockup?.sellers["Lenni"]?.compareTo(5)
+        val second = DbMockup?.sellers["Carl"]?.compareTo(10)
+        val third = DbMockup?.sellers["Barney"]?.compareTo(15)
+       if()
+    }
+
 }
