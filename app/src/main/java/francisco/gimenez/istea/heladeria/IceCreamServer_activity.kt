@@ -9,6 +9,7 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import francisco.gimenez.istea.heladeria.Model.DbMockup
 import francisco.gimenez.istea.heladeria.Model.IceCream
+import francisco.gimenez.istea.heladeria.Model.Seller
 
 class IceCreamServer_activity : AppCompatActivity() {
     lateinit var textViewSize:TextView
@@ -100,7 +101,7 @@ class IceCreamServer_activity : AppCompatActivity() {
         }
 
     }
-     private fun AddToCheckout(id:Int){
+    private fun AddToCheckout(id:Int){
         var flavors: ArrayList<String>  = ArrayList<String>()
         flavors.add(flavor1.text.toString())
         flavors.add(flavor2.text.toString())
